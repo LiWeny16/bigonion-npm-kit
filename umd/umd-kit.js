@@ -188,7 +188,7 @@
             getTime: function () {
                 return (kit.getMounth().toString() + "月" + kit.getDay() + "日 " + "星期" + kit.getWeek() + " " + kit.getHours() + "时 " + kit.getMinutes() + "分 " + kit.getSeconds()+"秒")
             },
-            version: "v0.9.6"
+            version: "v0.9.7"
 
         }
         c.kit = kit
