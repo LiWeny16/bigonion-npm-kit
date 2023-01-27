@@ -11,8 +11,11 @@
   },
   "scripts": {
     "install": "npm i",
-    "pub":"npm publish",
-    "test1":"node ./dev/example1.js"
+    "pub": "npm publish",
+    "lint": "eslint .",
+    "test1": "node ./dev/example1.js",
+    "test2": "node ./dev/example2.mjs",
+    "test3": "node ./dev/example3.js"
   },
   "keywords": [
     "kit",
@@ -22,11 +25,16 @@
     "Easy functions"
   ],
   "homepage": "https://bigonion.cn",
+  "TODO": "add more functions",
   "author": "Bigonion",
   "license": "MIT",
   "main": "index.js",
   "publishConfig": {
     "access": "public",
     "registry": "https://registry.npmjs.org/"
+  },
+  "devDependencies": {
+    "coveralls": "^3.1.1",
+    "eslint": "^8.32.0"
   }
 }

@@ -1,5 +1,6 @@
 # Onion 的 dev-kit
-
+[![NPM version](https://img.shields.io/npm/v/bigonion-kit)](https://www.npmjs.com/package/bigonion-kit)
+![license](https://img.shields.io/github/license/LiWeny16/bigonion-npm-kit)
 ## 下载(Download)
 
 ```js

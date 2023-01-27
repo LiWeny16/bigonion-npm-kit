@@ -73,9 +73,7 @@ let kit = {
         define(function (require, exports, module) {
             module.exports = factory()
         })
-    } else if (typeof exports === 'object') {
-
-    }
+    } 
     else {
         console.log('没有模块环境,成功挂载在全局对象上')
         root.kit = kit
