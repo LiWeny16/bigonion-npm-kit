@@ -1,0 +1,25 @@
+{
+  "name": "bigonion-kit",
+  "version": "0.9.5",
+  "type": "commonjs",
+  "scripts": {
+    "install": "npm i",
+    "pub":"npm publish"
+  },
+  "keywords": [
+    "kit",
+    "webKit",
+    "umd",
+    "Nodejs",
+    "Easy functions"
+  ],
+  "homepage": "https://bigonion.cn",
+  "author": "Bigonion",
+  "license": "MIT",
+  "main": "main.js",
+  "description": "My dev kitBox ",
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  }
+}
