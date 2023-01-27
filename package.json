@@ -1,10 +1,18 @@
 {
   "name": "bigonion-kit",
-  "version": "0.9.5",
+  "description": "A useful web console kit",
+  "version": "0.9.6",
+  "bugs": "https://github.com/LiWeny16/bigonion-npm-kit/issues",
   "type": "commonjs",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/LiWeny16/bigonion-npm-kit.git",
+    "directory": "/"
+  },
   "scripts": {
     "install": "npm i",
-    "pub":"npm publish"
+    "pub":"npm publish",
+    "test1":"node ./dev/example1.js"
   },
   "keywords": [
     "kit",
@@ -16,8 +24,7 @@
   "homepage": "https://bigonion.cn",
   "author": "Bigonion",
   "license": "MIT",
-  "main": "main.js",
-  "description": "My dev kitBox ",
+  "main": "index.js",
   "publishConfig": {
     "access": "public",
     "registry": "https://registry.npmjs.org/"
