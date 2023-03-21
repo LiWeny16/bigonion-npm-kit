@@ -283,6 +283,7 @@ v0.4.x demo Ver
 v0.5.3 增加了 esm 和 umd 模块
 v0.7.4 增加了 isFocus、ajax、setClipboard、getUUID
 v0.8.4 增加了 addStyle、removeAddedStyle
+v0.9.8 原型链方法增加move
 
 ## 开源协议(Open source agreement)
 

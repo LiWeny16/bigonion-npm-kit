@@ -1,6 +1,7 @@
 const kit = {
     moveIt: function (controlEle, movedEle) {
         //var demo = document.getElementById(`${settings}`)
+        movedEle.style.position = 'absolute'
         var canitmove = false
         var x = 0
             , y = 0
@@ -35,11 +36,13 @@ const kit = {
     findClass: function (className) {
         return document.getElementsByClassName(className)
     },
-    setCookie: function (cname, cvalue, exdays) {
+    setCookie: function (cname, cvalue, exdays = 0, cpath = '/', cdomain = window.location.host) {
         var d = new Date()
         d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000))
         var expires = "expires=" + d.toGMTString()
-        document.cookie = cname + "=" + cvalue + "; " + expires
+        var path = "path=" + cpath
+        var domain = "domain=" + cdomain
+        document.cookie = cname + "=" + cvalue + "; " + expires + "; " + path + "; " + domain
     },
     getCookie: function (cname) {
         var name = cname + "="
@@ -152,10 +155,11 @@ const kit = {
         return date.getDate()
     },
     getWeek: function () {
-        let weeks = new Array("星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六")
+        let weeks = new Array("7", "1", "2", "3", "4", "5", "6")
         let date = new Date()
-        kit.log(weeks[date.getDay()])
-        return date.getDay()
+        // kit.log(weeks[date.getDay()])
+        if (date.getDay() === 0) { return 7 }
+        else { return weeks[date.getDay()] }
     },
     getHours: function () {
         let date = new Date()
@@ -172,8 +176,56 @@ const kit = {
     getTime: function () {
         return (kit.getMounth().toString() + "月" + kit.getDay() + "日 " + "星期" + kit.getWeek() + " " + kit.getHours() + "时 " + kit.getMinutes() + "分 " + kit.getSeconds() + "秒")
     },
-    version: "v0.9.7"
+    import: function (url) {
+        let script = document.createElement('script')
+        script.setAttribute('type', 'text/javascript')
+        script.src = url
+        document.documentElement.appendChild(script)
+        console.log("imported @" + url)
+    },
+    addScript: (scripts) => {
+        let script = document.createElement('script')
+        script.setAttribute('type', 'text/javascript')
+        script.innerHTML = scripts
+        document.documentElement.appendChild(script)
+        console.log("scripts added")
+    },
+    // Arrays Way
+    /**
+     * 
+     * @param {arr} arr 
+     * @param {*} begin 
+     * @param {*} end 
+     */
+    fastSort: (arrRaw, begin = 0, end = arrRaw.length - 1) => {
+        let [...tempArr] = arrRaw //深拷贝，注意[...]只能深度第一层，用concat返回即可
+        function s(arr, begin, end = arr.length) {
+            if (begin < end) {
+                let i = begin
+                let j = end
+                let empty = arr[begin]
+                while (i < j) {
+                    while (arr[j] > empty && i < j) {
+                        j--
+                    }
+                    arr[i] = arr[j]
+                    while (arr[i] < empty && i < j) {
+                        i++
+                    }
+                    arr[j] = arr[i]
+                }
+                arr[i] = empty
+                s(arr, begin, i - 1)
+                s(arr, i + 1, end)
+            } else {
+                return
+            }
+        }
+        s(tempArr, begin, end)
+        return tempArr
+    },
+    version: "v0.10.14"
 
 }
-
 export default kit
+export { kit }
