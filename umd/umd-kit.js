@@ -249,8 +249,68 @@
                     s(tempArr, begin, end)
                     return tempArr
                 },
-                version: "v0.10.14"
-
+                /**
+                 * 
+                 * @param {string} md 
+                 * @return {string} parsed 
+                 */
+                mdparse:async (md)=>{
+                    md = markedParse(md)
+                    md= await latexParse(md)
+                    return md
+                    function latexParse(md) {
+                        return new Promise((resolve) => {
+                            let reg1 = /\$.*?\$/g //含有$的
+                            let reg2 = /(?<=\$)(.+?)(?=\$)/g
+                            let parsedTex = new Array()
+                            let origin = md
+                            let latex = md.match(reg1)
+                           
+                            let finalResult = ""
+                            if (latex) {
+                                try {
+                                    latex.forEach((ele, index) => {
+                                        ele = ele.match(reg2)
+                                        if (ele) {
+                                            parsedTex[index] = katex.renderToString(ele[0], {
+                                                throwOnError: false
+                                            })
+                                        } else {
+                                            parsedTex[index] = "<span style='color:#cc0000;'>ERR_NULL</span>"
+                                        }
+                                    })
+                                    md = md.replace(reg1, "<!temp?.!>")
+                                    md = md.split("<!temp?.!>")
+                                    parsedTex = [...parsedTex, ""]
+                                    for (let i = 0; i <= md.length - 1; i++) {
+                                        finalResult += md[i] + parsedTex[i]
+                                        // console.log(finalResult);
+                                        if (i == md.length - 1) {
+                                            resolve(finalResult)
+                    
+                                        }
+                                    }
+                                } catch (err) {
+                                    console.log(err)
+                                    return 5
+                                }
+                            }
+                            else resolve(origin)
+                        })
+                    }
+                    
+                    function markedParse(md) {
+                        return marked.parse(md)
+                    }
+                    
+                    // function getRegIndex(text, regex) {
+                    //     // const text = '$匹配我$ $匹配我$ 不要匹配我 $匹配我$'
+                    //     // const regex = /\$(.*?)\$/g
+                    //     const result = Array.from(text.matchAll(regex), match => match.index)
+                    //     return result
+                    // }
+                },
+                version: "v0.10.16"
             }
             c.kit = kit
             c.moveIt = kit.moveIt

@@ -293,5 +293,13 @@ v0.9.8 原型链方法增加move
 
 **bigonion**
 
-nameSpace: [bigonion.cn](https://bigonion.cn)  
+nameSpace:   
+[bigonion.cn](https://bigonion.cn)  
+[md.bigonion.cn](https://md.bigonion.cn) 
+[ai.bigonion.cn](https://ai.bigonion.cn) 
 Email: bigonion@bigonion.cn **&&** olderonion@gmail.com
+
+
+
+
+声明：未经本人同意，禁止转载、搬运、抄袭！  
