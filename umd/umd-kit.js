@@ -16,14 +16,24 @@
         /** 
           * HTMLElement原型链补充
         */
-        if (HTMLElement) {
+        if (typeof window === 'object') {
+            // window只存在于浏览器端
             HTMLElement.prototype.move = function () {
                 kit.moveIt(this, this)
             }
+        } else if (Object.prototype.toString.call(process) === '[object process]') {
+            //判断procss
+            console.log("Node环境");
         }
         //如果检测到页面已经带有kit对象，那么对这个kit进行二次检验,二次检验通过则不再继续导入,否则认为原页面没有kit，继续导入
         if (typeof c.kit === 'object' ? (typeof c.kit.version === 'string' ? false : true) : true) {
             const kit = {
+                /**
+                 * @description fast move Sth by holding on "controlEle" to move "movedEle"
+                 * @param {Object} controlEle
+                 * @param {Object} movedEle
+                 * @public
+                 */
                 moveIt: function (controlEle, movedEle) {
                     //var demo = document.getElementById(`${settings}`)
                     movedEle.style.position = 'absolute'
@@ -48,19 +58,38 @@
                         canitmove = false
                     }
                     window.onmousemove = function (e) {
-
+            
                         if (canitmove) {
                             movedEle.style.left = e.pageX - x + 'px'
                             movedEle.style.top = e.pageY - y + 'px'
                         }
                     }
                 },
+                /**
+                 * @description fast find Element by Id
+                 * @param {string} id
+                 * @return {Object}
+                 * @public
+                 */
                 findId: function (id) {
                     return document.getElementById(id)
                 },
+                /**
+                 *  @description fast find Element by className
+                 * @param {string} className
+                 * @return {Array}
+                 * @public
+                 */
                 findClass: function (className) {
                     return document.getElementsByClassName(className)
                 },
+                /**
+                 * @description fast set cookie by Native function
+                 * @param {string} cname
+                 * @param {Any} cvalue
+                 * @param {int} exdays {days}
+                 * @public
+                 */
                 setCookie: function (cname, cvalue, exdays = 0, cpath = '/', cdomain = window.location.host) {
                     var d = new Date()
                     d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000))
@@ -69,6 +98,12 @@
                     var domain = "domain=" + cdomain
                     document.cookie = cname + "=" + cvalue + "; " + expires + "; " + path + "; " + domain
                 },
+                /**
+                 * @description fast get cookie value
+                 * @param {string} cname
+                 * @return {string} cvalue
+                 * @public
+                 */
                 getCookie: function (cname) {
                     var name = cname + "="
                     var ca = document.cookie.split(';')
@@ -79,12 +114,28 @@
                     }
                     return ""
                 },
+                /**
+                 * @description fast log sth...
+                 * @param {string} a
+                 * @public
+                 */
                 log: function (a) {
                     console.log(a)
                 },
+                /**
+                 * @description fast pause some time, just like delay function
+                 * @param {int} time
+                 * @return {Promise}
+                 * @public
+                 */
                 sleep: (time) => {
                     return new Promise(resolve => setTimeout(resolve, time))
                 },
+                /**
+                * @description fast set clipBoard Value
+                * @param {string} text
+                * @public
+                */
                 setClipBoard: function (text = "") {
                     let inputTemp = document.createElement('input')
                     inputTemp.style.position = 'fixed'
@@ -115,6 +166,16 @@
                         return 0
                     }
                 },
+                /**
+                 * @description fast send request with ajax
+                 * @param {string} url
+                 * @param {string} way
+                 * @param {boolean} async
+                 * @param {JSON} header
+                 * @param {function} onload
+                 * @return {Object}
+                 * @public
+                 */
                 ajax: function (obj) {
                     obj.way = obj.way ? (obj.way) : "GET"
                     obj.async = obj.async ? (obj.async) : true
@@ -157,6 +218,10 @@
                     recognition.start()
                     return recognition
                 },
+                /**
+                 * @description add some style
+                 * @param {string}
+                 */
                 addStyle: function (cssText, cssType = 'text/css') {
                     var style = document.createElement('style')
                     style.type = cssType
@@ -164,13 +229,15 @@
                     style.innerHTML = cssText
                     document.getElementsByTagName('HEAD')[0].appendChild(style)
                 },
+                /**
+                 * @description remove all the added Cssstyle
+                 */
                 removeAddedStyle: function () {
                     for (let i of findClass("CSSAddedByKit")) { i.remove() }
                 },
                 /**
                  * @time
                  */
-
                 getMounth: function () {
                     let date = new Date()
                     return date.getMonth() + 1
@@ -223,7 +290,7 @@
                  * @param {*} end 
                  */
                 fastSort: (arrRaw, begin = 0, end = arrRaw.length - 1) => {
-                    let [...tempArr] =arrRaw //深拷贝，注意[...]只能深度第一层，用concat返回即可
+                    let [...tempArr] = arrRaw //深拷贝，注意[...]只能深度第一层，用concat返回即可
                     function s(arr, begin, end = arr.length) {
                         if (begin < end) {
                             let i = begin
@@ -254,9 +321,9 @@
                  * @param {string} md 
                  * @return {string} parsed 
                  */
-                mdparse:async (md)=>{
+                mdparse: async (md) => {
                     md = markedParse(md)
-                    md= await latexParse(md)
+                    md = await latexParse(md)
                     return md
                     function latexParse(md) {
                         return new Promise((resolve) => {
@@ -265,7 +332,7 @@
                             let parsedTex = new Array()
                             let origin = md
                             let latex = md.match(reg1)
-                           
+            
                             let finalResult = ""
                             if (latex) {
                                 try {
@@ -287,7 +354,7 @@
                                         // console.log(finalResult);
                                         if (i == md.length - 1) {
                                             resolve(finalResult)
-                    
+            
                                         }
                                     }
                                 } catch (err) {
@@ -298,11 +365,11 @@
                             else resolve(origin)
                         })
                     }
-                    
+            
                     function markedParse(md) {
                         return marked.parse(md)
                     }
-                    
+            
                     // function getRegIndex(text, regex) {
                     //     // const text = '$匹配我$ $匹配我$ 不要匹配我 $匹配我$'
                     //     // const regex = /\$(.*?)\$/g
@@ -310,7 +377,7 @@
                     //     return result
                     // }
                 },
-                version: "v0.10.16"
+                version: "v0.11.0"
             }
             c.kit = kit
             c.moveIt = kit.moveIt

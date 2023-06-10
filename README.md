@@ -1,6 +1,8 @@
 # Onion 的 dev-kit
+
 [![NPM version](https://img.shields.io/npm/v/bigonion-kit)](https://www.npmjs.com/package/bigonion-kit)
 ![license](https://img.shields.io/github/license/LiWeny16/bigonion-npm-kit)
+
 ## 下载(Download)
 
 ```js
@@ -198,7 +200,7 @@ setClipBoard("你好");
 
 ### **isFocus**
 
-```js 
+```js
 /**
  * Judge whether an element is in focus
  * @param {object} element
@@ -227,36 +229,43 @@ ajax({
   way: "GET",
   async: true,
   header: { "content-type": "json" },
-  onload:(data)=>{console.log(data.response)}
+  onload: (data) => {
+    console.log(data.response);
+  },
 });
 //注意：不能跨域
 ```
 
 ### **getUUID**
+
 Eg:
 
 ```js
-/** 
+/**
  * fast get cookie value
  * @return {string}
  * @public
  */
-kit.getUUID()
-
+kit.getUUID();
 ```
+
 ### **sound2Word**
+
 Eg:
+
 ```js
 /**
  * 控制台快捷语音识别
  * @return {string}
  */
 
-kit.sound2Word()
+kit.sound2Word();
 ```
 
 ### **addStyle**
+
 Eg:
+
 ```js
 /**
  * add some style
@@ -266,24 +275,27 @@ kit.addStyle(`
 body{
     background:pink
     }
-`)
+`);
 ```
+
 ### **removeAddedStyle**
+
 Eg:
+
 ```js
 /**
  * remove all the added Cssstyle
  */
-kit.removeAddedStyle()
+kit.removeAddedStyle();
 ```
 
 ## 版本更新日志(Version update log)
 
-v0.4.x demo Ver  
-v0.5.3 增加了 esm 和 umd 模块
-v0.7.4 增加了 isFocus、ajax、setClipboard、getUUID
-v0.8.4 增加了 addStyle、removeAddedStyle
-v0.9.8 原型链方法增加move
+v0.4.x demo Ver    
+v0.5.3 增加了 esm 和 umd 模块  
+v0.7.4 增加了 isFocus、ajax、setClipboard、getUUID  
+v0.8.4 增加了 addStyle、removeAddedStyle  
+v0.9.8 原型链方法增加 move   
 
 ## 开源协议(Open source agreement)
 
@@ -293,13 +305,10 @@ v0.9.8 原型链方法增加move
 
 **bigonion**
 
-nameSpace:   
+nameSpace:  
 [bigonion.cn](https://bigonion.cn)  
-[md.bigonion.cn](https://md.bigonion.cn) 
-[ai.bigonion.cn](https://ai.bigonion.cn) 
+[md.bigonion.cn](https://md.bigonion.cn)
+[ai.bigonion.cn](https://ai.bigonion.cn)
 Email: bigonion@bigonion.cn **&&** olderonion@gmail.com
 
-
-
-
-声明：未经本人同意，禁止转载、搬运、抄袭！  
+声明：未经本人同意，禁止转载、搬运、抄袭！
