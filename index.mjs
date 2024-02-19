@@ -1,3 +1,2 @@
-import kit from './esm/esm-kit.mjs'
-// import {} from './index'
+import kit from './esm/kit.js'
 export default kit

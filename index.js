@@ -1,1 +1,1 @@
-module.exports = require ('./umd/umd-kit')
+module.exports = require ('./umd/kit.js')

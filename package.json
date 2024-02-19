@@ -1,17 +1,16 @@
 {
   "name": "bigonion-kit",
   "description": "A useful web console kit",
-  "version": "0.11.0",
+  "version": "0.12.0",
   "bugs": "https://github.com/LiWeny16/bigonion-npm-kit/issues",
-  "type": "commonjs",
+  "type": "module",
   "repository": {
     "type": "git",
     "url": "https://github.com/LiWeny16/bigonion-npm-kit.git",
     "directory": "/"
   },
   "scripts": {
-    "install": "npm i",
-    "pub": "npm publish",
+    "pub": "yarn publish",
     "lint": "eslint .",
     "test1": "node ./dev/example1.js",
     "test2": "node ./dev/example2.mjs",
@@ -25,7 +24,6 @@
     "Easy functions"
   ],
   "homepage": "https://bigonion.cn",
-  "TODO": "add more functions",
   "author": "Bigonion",
   "license": "MIT",
   "main": "index.js",
@@ -34,7 +32,13 @@
     "registry": "https://registry.npmjs.org/"
   },
   "devDependencies": {
-    "coveralls": "^3.1.1",
-    "eslint": "^8.32.0"
+    "@rollup/plugin-typescript": "^11.1.6",
+    "rollup": "^4.12.0",
+    "rollup-plugin-terser": "^7.0.2",
+    "tslib": "^2.6.2",
+    "typescript": "^5.3.3"
+  },
+  "dependencies": {
+    "rollup-plugin-typescript2": "^0.36.0"
   }
 }

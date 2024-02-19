@@ -3,3 +3,5 @@
 /*.bat
 /.coveralls.yml
 /.eslintrc.json
+/tsconfig.json
+/rollup.config.js
